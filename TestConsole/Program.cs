@@ -1,0 +1,2 @@
+﻿using Core;
+RealtimeHost.Run();
