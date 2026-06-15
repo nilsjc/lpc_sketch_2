@@ -1,2 +1,2 @@
-##LPC experiments with dotNet and C# - now with GUI<br>
+# LPC experiments with dotNet and C# - now with GUI<br>
 work in progress...
