@@ -15,9 +15,9 @@ public class RealtimeClass
     {
         _engine = new LpcEngine(_sampleRate);
         _engine.Modulator.UseFixedPitch  = parameters.UseFixedPitch;
-        _engine.Modulator.PitchSemitones = (float)parameters.Pitch;
-        _engine.Modulator.FormantScale   = (float)parameters.Formant;
-        _engine.Modulator.FixedPitchHz   = (int)parameters.FixedPitchHz;
+        _engine.Modulator.PitchSemitones = parameters.Pitch;
+        _engine.Modulator.FormantScale   = parameters.Formant;
+        _engine.Modulator.FixedPitchHz   = parameters.FixedPitchHz;
         const uint framesPerBuffer = 256;   // låg latens; justera vid behov
         
         PortAudio.Initialize();
@@ -73,22 +73,22 @@ public class RealtimeClass
         _engine.Modulator.VoiceUnvoiced = voiceUnvoiced;
     }
 
-    public void ChangePitch(double pitch)
+    public void ChangePitch(float pitch)
     {
-        _engine.Modulator.PitchSemitones = (float)pitch;
+        _engine.Modulator.PitchSemitones = pitch;
     }
 
-    public void ChangeFormant(double formant)
+    public void ChangeFormant(float formant)
     {
-        _engine.Modulator.FormantScale = (float)formant;
+        _engine.Modulator.FormantScale = formant;
     }
 }
 public class RealtimeParameters
 {
-    public double Pitch { get; set; }
-    public double Formant { get; set; }
+    public float Pitch { get; set; }
+    public float Formant { get; set; }
     public bool UseFixedPitch { get; set; }
-    public double FixedPitchHz { get; set; }
+    public int FixedPitchHz { get; set; }
     public bool UseVoicedUnvoiced { get; set; }
 
 }

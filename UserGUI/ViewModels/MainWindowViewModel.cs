@@ -22,8 +22,8 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private double sliderValue_3;
 
-    private double _pitchSliderValue;
-    private double _formantSliderValue;
+    private double _pitchSliderValue = 12.0;
+    private double _formantSliderValue = 100.0;
 
     public double PitchSliderValue
     {
@@ -92,32 +92,28 @@ public partial class MainWindowViewModel : ViewModelBase
         else
         {
             _isHostRun = true;
+            var setPitchFreq = (float)(_pitchSliderValue - 12);
+            var setFormant = (float)(_formantSliderValue/100.0);
             Host.Run(new RealtimeParameters
             {
-                Pitch = _pitchSliderValue,
-                Formant = _formantSliderValue,
+                Pitch = setPitchFreq,
+                Formant = setFormant,
                 UseFixedPitch = _fixedPitch,
-                UseVoicedUnvoiced = _voiceUnvoiced
+                UseVoicedUnvoiced = _voiceUnvoiced,
+                FixedPitchHz = 60
             });
         }
     }
 
     public void OnPitchSliderValueChanged(double value)
     {
-        // Implementation for slider value change
-        Host.ChangePitch(value);
+        float result = (float)(value - 12);
+        Host.ChangePitch(result);
     }
 
     public void OnFormantSliderValueChanged(double value)
     {
-        // Implementation for formant slider value change
-        Host.ChangeFormant(value);
-    }
-
-    [RelayCommand]
-    public void OnChangeFormant()
-    {
-        // Implementation for Change Formant command
-        Host.ChangeFormant(Formant);
+        float result = (float)(value/100.0);
+        Host.ChangeFormant(result);
     }
 }
