@@ -6,6 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="UserGUI.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        x:CompileBindings="False"
         Icon="/Assets/avalonia-logo.ico"
         Title="LPCsynthesizer">
 
@@ -46,10 +47,12 @@
                         Spacing="12">
                 <Slider Orientation="Vertical"
                         Height="160" Width="28"
-                        Minimum="0" Maximum="100" Value="80"/>
+                        Minimum="0" Maximum="100"
+                        Value="{Binding PitchSliderValue}" />
                 <Slider Orientation="Vertical"
                         Height="160" Width="28"
-                        Minimum="0" Maximum="100" Value="60"/>
+                        Minimum="0" Maximum="100"
+                        Value="{Binding FormantSliderValue}" />
                 <Slider Orientation="Vertical"
                         Height="160" Width="28"
                         Minimum="0" Maximum="100" Value="75"/>
@@ -72,8 +75,8 @@
                                Foreground="White"
                                FontSize="14"/>
                 </Border>
-                <Button Content="Robot" Width="160" Height="36"/>
-                <Button Content="Voice/Unvoiced" Width="160" Height="36"/>
+                <Button Content="Robot" Command="{Binding OnRobot }" Width="160" Height="36"/>
+                <Button Content="Voice/Unvoiced" Command="{Binding OnVoiceUnvoiced}" Width="160" Height="36"/>
             </StackPanel>
         </Grid>
  
