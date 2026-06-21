@@ -27,8 +27,8 @@
  
             <!-- 2×2 Knappar -->
             <Grid Grid.Column="0"
-                  RowDefinitions="Auto,Auto"
-                  ColumnDefinitions="Auto,Auto"
+                  RowDefinitions="Auto,Auto,Auto"
+                  ColumnDefinitions="Auto,Auto,Auto"
                   VerticalAlignment="Center"
                   Margin="0,0,12,0">
                 <Button Grid.Row="0" Grid.Column="0"
@@ -37,6 +37,9 @@
                 <Button Grid.Row="1" Grid.Column="0"
                         Content="Generate" Width="130" Height="36" Margin="4"/>
                 <TextBox Text="Output File" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" PlaceholderText="Output file"/>
+                <Button Grid.Row="2" Grid.Column="0" 
+                        Content="Realtime LPC" Width="130" Height="36" Margin="4" 
+                        Command="{Binding StartStopEngine}" />
             </Grid>
  
             <!-- 4 vertikala skjutreglage -->
@@ -71,15 +74,10 @@
                 <Border Background="#2196F3"
                         Width="160" Height="80"
                         CornerRadius="3">
-                    <TextBlock Text="label / picture"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Foreground="White"
-                               FontSize="14"/>
+                    <Image Source="avares://UserGUI/Assets/lips.png" Stretch="UniformToFill"/>
                 </Border>
-                <Button Content="Robot" Command="{Binding OnRobot }" Width="160" Height="36"/>
+                <Button Content="Fixed pitch" Command="{Binding OnRobot }" Width="160" Height="36"/>
                 <Button Content="Voice/Unvoiced" Command="{Binding OnVoiceUnvoiced}" Width="160" Height="36"/>
-                <Button Content="Start/Stop" Command="{Binding StartStopEngine}" Width="160" Height="36"/>
             </StackPanel>
         </Grid>
  
