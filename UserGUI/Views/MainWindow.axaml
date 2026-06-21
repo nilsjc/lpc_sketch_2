@@ -8,7 +8,9 @@
         x:DataType="vm:MainWindowViewModel"
         x:CompileBindings="False"
         Icon="/Assets/avalonia-logo.ico"
-        Title="LPCsynthesizer">
+        Title="LPCsynthesizer"
+        Background="#5A1622"
+        Foreground="#C8E6FF">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -27,26 +29,32 @@
  
             <!-- 2×2 Knappar -->
             <Grid Grid.Column="0"
-                  RowDefinitions="Auto,Auto,Auto"
+                  RowDefinitions="Auto,Auto,Auto, Auto"
                   ColumnDefinitions="Auto,Auto,Auto"
                   VerticalAlignment="Center"
                   Margin="0,0,12,0">
                 <Button Grid.Row="0" Grid.Column="0"
-                        Content="Load File" Width="130" Height="36" Margin="4"/>
+                        Foreground="AliceBlue"  Content="Load File" Width="130" Height="36" Margin="4"/>
                 <TextBox Text="Input File" Grid.Row="0" Grid.Column="1" PlaceholderText="Input file"/>
                 <Button Grid.Row="1" Grid.Column="0"
-                        Content="Generate" Width="130" Height="36" Margin="4"/>
+                        Foreground="AliceBlue" Content="Generate" Width="130" Height="36" Margin="4"/>
                 <TextBox Text="Output File" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" PlaceholderText="Output file"/>
                 <Button Grid.Row="2" Grid.Column="0" 
-                        Content="Realtime LPC" Width="130" Height="36" Margin="4" 
+                        Foreground="AliceBlue" Content="Realtime LPC" Width="130" Height="36" Margin="4" 
                         Command="{Binding StartStopEngine}" />
+            
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="12">
+                <Button Foreground="Aqua" Margin="2" Content="Rec " />
+                <Button Foreground="Aqua" Margin="2" Content="Play" />
+                <Button Foreground="Aqua" Margin="2" Content="Loop" />
+            </StackPanel>
             </Grid>
  
             <!-- 4 vertikala skjutreglage -->
                 <Grid Grid.Column="1" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 RowSpacing="10"
-                ColumnDefinitions="100,1*,1*,1*" RowDefinitions="Auto,Auto,Auto"  Margin="4">
+                ColumnDefinitions="100,100,100,100" RowDefinitions="Auto,Auto,Auto"  Margin="4">
                         <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="0"
                                         Height="160" Width="28"
                                         Minimum="0" Maximum="24"
@@ -88,8 +96,8 @@
                         CornerRadius="3">
                     <Image Source="avares://UserGUI/Assets/lips.png" Stretch="UniformToFill"/>
                 </Border>
-                <Button Content="Fixed pitch" Command="{Binding OnRobot }" Width="160" Height="36"/>
-                <Button Content="Voice/Unvoiced" Command="{Binding OnVoiceUnvoiced}" Width="160" Height="36"/>
+                <Button Foreground="AliceBlue" Content="Fixed pitch" Command="{Binding OnRobot }" Width="160" Height="36"/>
+                <Button Foreground="AliceBlue" Content="Voice/Unvoiced" Command="{Binding OnVoiceUnvoiced}" Width="160" Height="36"/>
             </StackPanel>
         </Grid>
  

@@ -12,7 +12,7 @@ namespace Core
         private readonly FrameRing   _ring;
         private readonly FrameInfo[] _scratch;
 
-        public Modulator Modulator => _modulator;   // rattarna nås härifrån
+        public Modulator Modulator => _modulator;   // realtidskontroller nås härifrån
 
         public LpcEngine(int sampleRate)
         {
