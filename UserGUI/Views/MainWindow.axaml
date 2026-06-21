@@ -43,28 +43,40 @@
             </Grid>
  
             <!-- 4 vertikala skjutreglage -->
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        Spacing="12">
-                <Slider Orientation="Vertical"
-                        Height="160" Width="28"
-                        Minimum="0" Maximum="24"
-                        IsSnapToTickEnabled="True"
-                        TickFrequency="1"
-                        Value="{Binding PitchSliderValue}" />
-                <Slider Orientation="Vertical"
-                        Height="160" Width="28"
-                        Minimum="85" Maximum="115"
-                        Value="{Binding FormantSliderValue}" />
-                <Slider Orientation="Vertical"
-                        Height="160" Width="28"
-                        Minimum="0" Maximum="100" Value="75"/>
-                <Slider Orientation="Vertical"
-                        Height="160" Width="28"
-                        Minimum="0" Maximum="100" Value="50"/>
-            </StackPanel>
+                <Grid Grid.Column="1" HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                RowSpacing="10"
+                ColumnDefinitions="100,1*,1*,1*" RowDefinitions="Auto,Auto,Auto"  Margin="4">
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="0"
+                                        Height="160" Width="28"
+                                        Minimum="0" Maximum="24"
+                                        IsSnapToTickEnabled="True"
+                                        TickFrequency="1"
+                                        Value="{Binding PitchSliderValue}" />
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="1"
+                                        Height="160" Width="28"
+                                        Minimum="85" Maximum="115"
+                                        Value="{Binding FormantSliderValue}" />
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="2"
+                                        Height="160" Width="28"
+                                        Minimum="0" Maximum="100" Value="75"/>
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="3"
+                                        Height="160" Width="28"
+                                        Minimum="0" Maximum="100" Value="50"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                Text="Frequency" 
+                                TextAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                Text="Formant"
+                                TextAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2"
+                                Text="Poles"
+                                TextAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="3"
+                                Text="Transform"
+                                TextAlignment="Center"/>
+                        
+                </Grid>
  
             <!-- Label / Bild + knappar -->
             <StackPanel Grid.Column="2"
