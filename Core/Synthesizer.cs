@@ -123,7 +123,6 @@ namespace Core
 
                 if (!float.IsFinite(y))     // filtret blåste upp -> återställ istället för att dö
                 {
-                    Console.Write("E1 ");
                     // y = 0f;
                     // Array.Clear(_bp, 0, _bp.Length);
                     // _deEmphPrev = 0f;

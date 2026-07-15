@@ -1,7 +1,7 @@
 namespace Core
 {
     // Synten och analysatorn måste vara kopplade i takt: synten ska emittera 
-    // precis analyzer.Hop samples per ram. Skapa alltså synten med 
+    // precis analyzer.Hop samples per frame. Skapa alltså synten med 
     // samplesPerFrame = analyzer.Hop, annars glider tids­basen isär.
     
     public class LPCAnalyzer
@@ -14,16 +14,16 @@ namespace Core
         private readonly int _frameLength;
         private readonly int _hop;
 
-        // återanvänd scratch (allokeras en gång, inte per ram)
+        // återanvänd scratch (allokeras en gång, inte per frame)
         private readonly float[] _ring;       // de senaste _frameLength samplen
-        private readonly float[] _work;       // fönstrad ram inför analys
+        private readonly float[] _work;       // fönstrad frame inför analys
         private readonly float[] _lpc;        // lpcCoeffs[order+1]
         private readonly float[] _autocorr;   // autocorr[order+1]
         private readonly float[] _reflect;    // reflectionCoeffs[order+1]
 
         // --- bestående tillstånd ---
         private int   _writePos;     // skrivpekare i ringbufferten
-        private int   _countdown;    // samples kvar till nästa ram
+        private int   _countdown;    // samples kvar till nästa frame
         private float _preEmphPrev;  // pre-emphasis-filtrets minne (kontinuerligt)
 
         public LPCAnalyzer(int sampleRate, int order = 20, float frameSeconds = 0.030f)
@@ -41,12 +41,12 @@ namespace Core
             _countdown = _frameLength;
         }
 
-        /// <summary>Synten måste emittera exakt så här många samples per ram.</summary>
+        /// <summary>Synten måste emittera exakt så här många samples per frame.</summary>
         public int Hop => _hop;
 
         /// <summary>
-        /// Matar in samples; färdiga ramar skrivs till 'frames' allteftersom de bildas.
-        /// Returnerar antal ramar som skrevs (ofta 0, ibland 1 per block).
+        /// Matar in samples; färdiga frames skrivs till 'frames' allteftersom de bildas.
+        /// Returnerar antal frames som skrevs (ofta 0, ibland 1 per block).
         /// Storleksätt 'frames' till minst input.Length / Hop + 1.
         /// </summary>
         public int Push(ReadOnlySpan<float> input, Span<FrameInfo> frames)

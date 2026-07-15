@@ -44,8 +44,9 @@
                         Command="{Binding StartStopEngine}" />
             
             <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="12">
-                <Button Foreground="Aqua" Margin="2" Content="Rec " />
-                <Button Foreground="Aqua" Margin="2" Content="Play" />
+                <Button Foreground="Aqua" Margin="2" Content="Rec" Command="{Binding OnStartStopRecording}"
+                />
+                <Button Foreground="Aqua" Margin="2" Content="Play" Command="{Binding OnPlayRecording}" />
                 <Button Foreground="Aqua" Margin="2" Content="Loop" />
             </StackPanel>
             </Grid>
@@ -54,33 +55,42 @@
                 <Grid Grid.Column="1" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 RowSpacing="10"
-                ColumnDefinitions="100,100,100,100" RowDefinitions="Auto,Auto,Auto"  Margin="4">
-                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="0"
+                ColumnDefinitions="100,100,100,100,100" RowDefinitions="Auto,Auto,Auto"  Margin="4">
+                <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="0"
+                                        Height="160" Width="28"
+                                        Minimum="0" Maximum="200"
+                                        IsSnapToTickEnabled="True"
+                                        TickFrequency="1"
+                                        Value="{Binding LoopSpeedValue}" />       
+                <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="1"
                                         Height="160" Width="28"
                                         Minimum="0" Maximum="24"
                                         IsSnapToTickEnabled="True"
                                         TickFrequency="1"
                                         Value="{Binding PitchSliderValue}" />
-                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="1"
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="2"
                                         Height="160" Width="28"
                                         Minimum="85" Maximum="115"
                                         Value="{Binding FormantSliderValue}" />
-                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="2"
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="3"
                                         Height="160" Width="28"
                                         Minimum="0" Maximum="100" Value="75"/>
-                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="3"
+                        <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="4"
                                         Height="160" Width="28"
                                         Minimum="0" Maximum="100" Value="50"/>
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                Text="Frequency" 
+                                Text="Loop speed" 
                                 TextAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="1"
-                                Text="Formant"
+                                Text="Frequency" 
                                 TextAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="2"
-                                Text="Poles"
+                                Text="Formant"
                                 TextAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="3"
+                                Text="Poles"
+                                TextAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="4"
                                 Text="Transform"
                                 TextAlignment="Center"/>
                         

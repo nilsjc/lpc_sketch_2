@@ -22,8 +22,23 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private double sliderValue_3;
 
+    private double _loopSpeedValue = 100.0;
     private double _pitchSliderValue = 12.0;
     private double _formantSliderValue = 100.0;
+
+    public double LoopSpeedValue
+    {
+        get => _loopSpeedValue;
+        set
+        {
+            if (_loopSpeedValue != value)
+            {
+                _loopSpeedValue = value;
+                OnPropertyChanged();
+                OnLoopSpeedValueChanged(value);
+            }
+        }
+    }
 
     public double PitchSliderValue
     {
@@ -103,6 +118,41 @@ public partial class MainWindowViewModel : ViewModelBase
                 FixedPitchHz = 60
             });
         }
+    }
+
+    [RelayCommand]
+    public void OnStartStopRecording()
+    {
+        if (Host.IsRecording)
+        {
+            Host.StopRecording();
+        }
+        else
+        {
+            Host.StartRecording();
+        }
+    }
+
+    [RelayCommand]
+    public void OnPlayRecording()
+    {
+        if (Host.IsLooping)
+        {
+            Host.BackToLive();
+        }
+        else
+        {
+            Host.PlayLoop();
+        }
+        
+    }
+
+    public void OnLoopSpeedValueChanged(double value)
+    {
+        float result = (float)(value);
+        result /= 25.0f;
+        result -= 2.0f;
+        Host.ChangeLoopSpeed(result);
     }
 
     public void OnPitchSliderValueChanged(double value)

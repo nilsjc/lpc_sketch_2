@@ -19,6 +19,7 @@ namespace Core
             for (int i = 0; i < capacity; i++)
                 _buf[i] = new FrameParams { Lpc = new float[order] };
         }
+        public int Count => _count;
 
         public bool Empty => _count == 0;
         public bool Full  => _count == _buf.Length;

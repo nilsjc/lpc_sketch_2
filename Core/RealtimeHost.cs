@@ -2,6 +2,7 @@ using System;
 using PortAudioSharp;
 using Core;
 
+/*
 public static class RealtimeHost
 {
     public static void Run()
@@ -64,3 +65,4 @@ public static class RealtimeHost
         PortAudio.Terminate();
     }
 }
+*/
