@@ -8,6 +8,8 @@ namespace UserGUI.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
+    private string _RecButtonBackground = "DarkGreen";
+    private string _LPCEngineActive = "DarkGray";
     public RealtimeClass Host { get; } = new RealtimeClass();
     private bool _isHostRun { get; set; } = false;
     private bool _fixedPitch { get; set; } = false;
@@ -126,10 +128,13 @@ public partial class MainWindowViewModel : ViewModelBase
         if (Host.IsRecording)
         {
             Host.StopRecording();
+            RecButtonBackground = "DarkGreen";
         }
         else
         {
             Host.StartRecording();
+            RecButtonBackground = "Red";
+
         }
     }
 
@@ -147,6 +152,19 @@ public partial class MainWindowViewModel : ViewModelBase
         
     }
 
+    [RelayCommand]
+    public void OnSaveRecording()
+    {
+        
+    }
+
+    [RelayCommand]
+    public void OnLoadRecording()
+    {
+        
+    }
+
+
     public void OnLoopSpeedValueChanged(double value)
     {
         float result = (float)(value);
@@ -163,7 +181,19 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public void OnFormantSliderValueChanged(double value)
     {
-        float result = (float)(value/100.0);
+        float result = (float)(value/95.0);
         Host.ChangeFormant(result);
+    }
+    public string RecButtonBackground
+    {
+        get => _RecButtonBackground;
+        set
+        {
+            if (_RecButtonBackground != value)
+            {
+                _RecButtonBackground = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

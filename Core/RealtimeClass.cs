@@ -7,7 +7,6 @@ public class RealtimeClass
     LpcEngine _engine;
     int _sampleRate = 44100;
     PortAudioSharp.Stream _stream;
-
     public RealtimeClass(int sampleRate = 44100)
     {
         _sampleRate = sampleRate;
@@ -133,6 +132,15 @@ public class RealtimeClass
 
     /// <summary>Antal inspelade frames (~66,7 per sekund vid 44,1 kHz).</summary>
     public int RecordedFrames => _engine.Recorder.Count;
+
+    public void SaveLoopToFile(string filename)
+    {
+        //_engine.Recorder.SaveToFile(filename);
+    }
+    public void LoadLoopFromFile(string filename)
+    {
+        //_engine.Recorder.LoadFromFile(filename);
+    }
 }
 
 public class RealtimeParameters

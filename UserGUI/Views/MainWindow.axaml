@@ -44,7 +44,7 @@
                         Command="{Binding StartStopEngine}" />
             
             <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="12">
-                <Button Foreground="Aqua" Margin="2" Content="Rec" Command="{Binding OnStartStopRecording}"
+                <Button Background="{Binding RecButtonBackground}" Foreground="Aqua" Margin="2" Content="Rec" Command="{Binding OnStartStopRecording}"
                 />
                 <Button Foreground="Aqua" Margin="2" Content="Play" Command="{Binding OnPlayRecording}" />
                 <Button Foreground="Aqua" Margin="2" Content="Loop" />
@@ -58,7 +58,7 @@
                 ColumnDefinitions="100,100,100,100,100" RowDefinitions="Auto,Auto,Auto"  Margin="4">
                 <Slider Orientation="Vertical" Grid.Row="0" Grid.Column="0"
                                         Height="160" Width="28"
-                                        Minimum="0" Maximum="200"
+                                        Minimum="0" Maximum="100"
                                         IsSnapToTickEnabled="True"
                                         TickFrequency="1"
                                         Value="{Binding LoopSpeedValue}" />       
