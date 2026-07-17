@@ -9,7 +9,9 @@ namespace UserGUI.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase
 {
     private string _RecButtonBackground = "DarkGreen";
-    private string _LPCEngineActive = "DarkGray";
+    private string _PlayButtonBackground = "DarkGreen";
+    private string _LPCEngineActive = "Gray";
+    private string _LPCEngineStatus = "LPC Engine off";
     public RealtimeClass Host { get; } = new RealtimeClass();
     private bool _isHostRun { get; set; } = false;
     private bool _fixedPitch { get; set; } = false;
@@ -105,9 +107,13 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             _isHostRun = false;
             Host.Stop();
+            LPCEngineActive = "Gray";
+            LPCEngineStatus = "LPC Engine off";
         }
         else
         {
+            LPCEngineActive = "IndianRed";
+            LPCEngineStatus = "LPC Engine on";
             _isHostRun = true;
             var setPitchFreq = (float)(_pitchSliderValue - 12);
             var setFormant = (float)(_formantSliderValue/100.0);
@@ -143,10 +149,12 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         if (Host.IsLooping)
         {
+            PlayButtonBackground = "DarkGreen";
             Host.BackToLive();
         }
         else
         {
+            PlayButtonBackground = "DarkOrange";
             Host.PlayLoop();
         }
         
@@ -192,6 +200,42 @@ public partial class MainWindowViewModel : ViewModelBase
             if (_RecButtonBackground != value)
             {
                 _RecButtonBackground = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    public string PlayButtonBackground
+    {
+        get => _PlayButtonBackground;
+        set
+        {
+            if (_PlayButtonBackground != value)
+            {
+                _PlayButtonBackground = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    public string LPCEngineActive
+    {
+        get => _LPCEngineActive;
+        set
+        {
+            if (_LPCEngineActive != value)
+            {
+                _LPCEngineActive = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    public string LPCEngineStatus
+    {
+        get => _LPCEngineStatus;
+        set
+        {
+            if (_LPCEngineStatus != value)
+            {
+                _LPCEngineStatus = value;
                 OnPropertyChanged();
             }
         }

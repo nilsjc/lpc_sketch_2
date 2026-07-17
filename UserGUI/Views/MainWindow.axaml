@@ -39,19 +39,19 @@
                 <Button Grid.Row="1" Grid.Column="0"
                         Foreground="AliceBlue" Content="Generate" Width="130" Height="36" Margin="4"/>
                 <TextBox Text="Output File" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" PlaceholderText="Output file"/>
-                <Button Grid.Row="2" Grid.Column="0" 
-                        Foreground="AliceBlue" Content="Realtime LPC" Width="130" Height="36" Margin="4" 
+                <Button Grid.Row="2" Grid.Column="0"
+                        Background="{Binding LPCEngineActive}"  
+                        Foreground="AliceBlue" Content="{Binding LPCEngineStatus}" Width="130" Height="36" Margin="4" 
                         Command="{Binding StartStopEngine}" />
             
             <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="12">
                 <Button Background="{Binding RecButtonBackground}" Foreground="Aqua" Margin="2" Content="Rec" Command="{Binding OnStartStopRecording}"
                 />
-                <Button Foreground="Aqua" Margin="2" Content="Play" Command="{Binding OnPlayRecording}" />
-                <Button Foreground="Aqua" Margin="2" Content="Loop" />
+                <Button Background="{Binding PlayButtonBackground}" Foreground="Aqua" Margin="2" Content="Play" Command="{Binding OnPlayRecording}" />
             </StackPanel>
             </Grid>
  
-            <!-- 4 vertikala skjutreglage -->
+            <!-- 5 vertikala skjutreglage -->
                 <Grid Grid.Column="1" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 RowSpacing="10"
