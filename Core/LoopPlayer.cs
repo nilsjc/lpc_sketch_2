@@ -74,35 +74,35 @@ namespace Core
         // i LoopPlayer
 
         private (int start, int end) TrimSilence()
-    {
-        int count = _rec.Count;
-        if (count == 0) return (0, 0);
+        {
+            int count = _rec.Count;
+            if (count == 0) return (0, 0);
 
-        // Svep 1: hitta maxgain — referensen för den relativa tröskeln
-        float maxGain = 0f;
-        for (int i = 0; i < count; i++)
-            if (_rec.Frames[i].Gain > maxGain) maxGain = _rec.Frames[i].Gain;
+            // Svep 1: hitta maxgain — referensen för den relativa tröskeln
+            float maxGain = 0f;
+            for (int i = 0; i < count; i++)
+                if (_rec.Frames[i].Gain > maxGain) maxGain = _rec.Frames[i].Gain;
 
-        if (maxGain <= 0f) return (0, count);   // helt tyst inspelning: ta allt
+            if (maxGain <= 0f) return (0, count);   // helt tyst inspelning: ta allt
 
-        float threshold = maxGain * TrimThresholdRatio;
+            float threshold = maxGain * TrimThresholdRatio;
 
-        // Svep 2: framifrån tills första framen över tröskeln
-        int start = 0;
-        while (start < count && _rec.Frames[start].Gain < threshold) start++;
+            // Svep 2: framifrån tills första framen över tröskeln
+            int start = 0;
+            while (start < count && _rec.Frames[start].Gain < threshold) start++;
 
-        // Svep 3: bakifrån tills sista framen över tröskeln
-        int end = count;
-        while (end > start && _rec.Frames[end - 1].Gain < threshold) end--;
+            // Svep 3: bakifrån tills sista framen över tröskeln
+            int end = count;
+            while (end > start && _rec.Frames[end - 1].Gain < threshold) end--;
 
-        // lite luft så talets ansats och utklinga inte kapas
-        start = Math.Max(0, start - PadFrames);
-        end   = Math.Min(count, end + PadFrames);
+            // lite luft så talets ansats och utklinga inte kapas
+            start = Math.Max(0, start - PadFrames);
+            end   = Math.Min(count, end + PadFrames);
 
-        // för lite kvar? Trimningen har misslyckats — fall tillbaka till hela inspelningen
-        if (end - start < MinLoopFrames) return (0, count);
+            // för lite kvar? Trimningen har misslyckats — fall tillbaka till hela inspelningen
+            if (end - start < MinLoopFrames) return (0, count);
 
-        return (start, end);
-    }
+            return (start, end);
+        }
     }
 }

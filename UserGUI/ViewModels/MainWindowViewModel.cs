@@ -1,5 +1,7 @@
 // https://docs.avaloniaui.net/docs/data-binding/binding-to-commands
 
+using System.Collections.Generic;
+using System.Linq;
 using Avalonia;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,11 +14,19 @@ public partial class MainWindowViewModel : ViewModelBase
     private string _PlayButtonBackground = "DarkGreen";
     private string _LPCEngineActive = "Gray";
     private string _LPCEngineStatus = "LPC Engine off";
-    public RealtimeClass Host { get; } = new RealtimeClass();
+    public RealtimeClass Host { get; }
     private bool _isHostRun { get; set; } = false;
     private bool _fixedPitch { get; set; } = false;
     private bool _voiceUnvoiced { get; set; } = true;
-
+    public string[] _inputDeviceList { get; set; }
+    public string[] _outputDeviceList { get; set; }
+    public MainWindowViewModel()
+    {
+        Host  = new RealtimeClass();
+        RealtimeClass.InitializeAudio();
+        _inputDeviceList = [.. RealtimeClass.GetInputDevices().Select(d => d.Name)];
+        _outputDeviceList = [.. RealtimeClass.GetOutputDevices().Select(d => d.Name)];
+    }
     [ObservableProperty]
     private double _pitch;
 
@@ -29,6 +39,9 @@ public partial class MainWindowViewModel : ViewModelBase
     private double _loopSpeedValue = 100.0;
     private double _pitchSliderValue = 12.0;
     private double _formantSliderValue = 100.0;
+
+    public string[] InputDeviceList => _inputDeviceList;
+    public string[] OutputDeviceList => _outputDeviceList;
 
     public double LoopSpeedValue
     {
@@ -240,4 +253,5 @@ public partial class MainWindowViewModel : ViewModelBase
             }
         }
     }
+    
 }
